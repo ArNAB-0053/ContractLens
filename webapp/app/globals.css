@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Montserrat;
+  src: url('../public/Montserrat-VariableFont_wght.ttf');
+}
+
+.contract {
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+.trans {
+  transition: all 0.5s linear ease;
+}
+
+.custom-file-input input[type="file"] {
+  display: none;
+}
+
+.custom-file-input label {
+  display: inline-block;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+* {
+  font-family: Montserrat, sans-serif;
+}
