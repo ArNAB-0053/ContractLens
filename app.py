@@ -77,7 +77,7 @@ def highlight_mismatches(text1, text2):
             
     return highlighted_text1.strip(), highlighted_text2.strip()
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def compare_contracts():
     if 'file1' not in request.files or 'file2' not in request.files:
         return jsonify({'error': 'Both PDF files are required'}), 400
@@ -140,6 +140,3 @@ def compare_contracts():
         "unique_in_contract1": unique_in_contract1,
         "unique_in_contract2": unique_in_contract2
     })
-
-if __name__ == '__main__':
-    app.run(debug=True)
