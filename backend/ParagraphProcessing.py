@@ -5,17 +5,7 @@ import joblib
 from typing import List, Dict
 
 class ParagraphExtractor:
-    """
-    A class to extract and classify paragraphs from PDF documents.
-    """
-
     def __init__(self, text_extractor: TextExtractor):
-        """
-        Initialize ParagraphExtractor with a TextExtractor instance.
-
-        Args:
-            text_extractor (TextExtractor): Instance of the TextExtractor class.
-        """
         self.text_extractor = text_extractor
         self.section_patterns = {
             'main_section': r'^\s*(\d+\.)\s*([A-Z][^.]+)',           # 1. SECTION
@@ -25,15 +15,6 @@ class ParagraphExtractor:
         }
 
     def classify_paragraph(self, text: str) -> Dict:
-        """
-        Classify paragraph type and extract structural information.
-
-        Args:
-            text (str): The paragraph text to classify.
-
-        Returns:
-            Dict: Classification details including type, level, number, and header.
-        """
         text = text.strip()
 
         # Check for special sections
@@ -60,15 +41,6 @@ class ParagraphExtractor:
         return {'type': 'content', 'level': 0, 'number': None, 'header': None}
 
     def extract_paragraphs(self, pdf_path: str) -> List[Dict]:
-        """
-        Extract and classify paragraphs from a PDF.
-
-        Args:
-            pdf_path (str): Path to the PDF file.
-
-        Returns:
-            List[Dict]: A list of paragraphs with classification details.
-        """
         text = self.text_extractor.extract_text_from_pdf(pdf_path)  # Extract text using TextExtractor
         raw_paragraphs = re.split(r'\n\s*\n', text)  # Split into paragraphs
 
