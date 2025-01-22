@@ -1,4 +1,6 @@
 *.pdf
+.env.local
+.env.*
 test.py
 temp.py
 *.md

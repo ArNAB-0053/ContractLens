@@ -4,10 +4,19 @@ from TextPreprocessing import TextExtractor, TextCleaner, TextVectorizer
 from ParagraphProcessing import ParagraphExtractor, ParagraphAnnotator
 from SimilarityChecker import SimilarityCalculator, MismatchHighlighter
 import joblib
+import os
+from werkzeug.utils import secure_filename
 
 # Initialize the Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# Create and configure upload folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'temp_uploads')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 print("Loading ML model and vectorizer...")
 model = joblib.load('ensemble_model.pkl')
@@ -24,6 +33,97 @@ paragraph_annotator = ParagraphAnnotator(model=model, vectorizer=vectorizer)
 
 similarity_calculator = SimilarityCalculator(vectorizer=text_vectorizer)
 mismatch_highlighter = MismatchHighlighter()
+
+@app.route('/api/extract-text', methods=['POST'])
+def extract_text():
+    if 'file' not in request.files:
+        return jsonify({"error": "File is required"}), 400
+
+    file = request.files['file']
+    print("File received:", file.filename)
+
+    # Check if the file is empty
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+
+    # Save the file to a temporary path
+    temp_file_path = 'temp_file.pdf'
+    file.save(temp_file_path)
+    print(f"File saved temporarily to: {temp_file_path}")
+
+    try:
+        # Extract text using the `TextExtractor` class
+        extracted_text = text_extractor.extract_text_from_pdf(temp_file_path)
+
+        return jsonify({"extracted_text": extracted_text})
+    except Exception as e:
+        print("Error occurred:", str(e))
+        return jsonify({"error": str(e)}), 500
+    finally:
+        # Clean up the temporary file
+        if os.path.exists(temp_file_path):
+            print(f"Cleaning up temporary file: {temp_file_path}")
+            os.remove(temp_file_path)
+
+
+
+@app.route('/api/calculate-similarity', methods=['POST'])
+def calculate_similarity():
+    """Calculate similarity between two texts."""
+    data = request.get_json()
+    text1 = data.get('text1')
+    text2 = data.get('text2')
+
+    if not text1 or not text2:
+        return jsonify({"error": "Both text1 and text2 are required"}), 400
+
+    try:
+        similarity = similarity_calculator.calculate_similarity(text1, text2)
+        return jsonify({"similarity_score": similarity}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/summarize-text', methods=['POST'])
+def summarize_text():
+    """Summarize the provided text (Placeholder)."""
+    data = request.get_json()
+    text = data.get('text')
+
+    if not text:
+        return jsonify({"error": "Text input is required"}), 400
+
+    try:
+        # Implement summarization logic or integrate an external tool here
+        summarized_text = "Summarization not implemented yet. Placeholder response."
+        return jsonify({"summarized_text": summarized_text}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/chat-with-pdf', methods=['POST'])
+def chat_with_pdf():
+    """Chat with a PDF (Placeholder for now)."""
+    # Integrate chat logic with PDF text
+    return jsonify({"message": "Chat with PDF feature not implemented yet."}), 501
+
+
+@app.route('/api/annotate-paragraphs', methods=['POST'])
+def annotate_paragraphs():
+    """Annotate paragraphs with types and details."""
+    if 'file' not in request.files:
+        return jsonify({"error": "PDF file is required"}), 400
+
+    file = request.files['file']
+    pdf_path = 'uploaded_temp.pdf'
+    file.save(pdf_path)
+
+    try:
+        paragraphs = paragraph_extractor.extract_paragraphs(pdf_path)
+        annotated_paragraphs = paragraph_annotator.annotate_paragraphs(paragraphs)
+        return jsonify({"annotated_paragraphs": annotated_paragraphs}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/', methods=['POST'])
 def compare_pdfs():
