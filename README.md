@@ -94,8 +94,8 @@ Modern web application with Flask backend and Next.js frontend.
 
 ### 1. 📥 Clone Repository
 ```bash
-git clone https://github.com/ArNAB-0053/contract_comparison.git
-cd contract_comparison/backend
+git clone https://github.com/ArNAB-0053/ContractLens.git
+cd ContractLens/backend
 ```
 
 ### 2. 🔧 Virtual Environment Setup
@@ -124,7 +124,11 @@ Backend runs at: `http://127.0.0.1:5000`
 
 ### 1. 📂 Navigate to Frontend
 ```bash
-cd contract_comparison/webapp
+cd ../webapp
+```
+or
+```bash
+cd ContractLens/webapp
 ```
 
 ### 2. 📦 Install Dependencies
