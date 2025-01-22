@@ -54,13 +54,21 @@ Watch our project demonstration:
 ### 🧠 **Machine Learning**  
 - **Python**: Primary programming language for ML tasks.  
 - **NLP Libraries**:  
-  - `tfidfVectorizer`: For text feature extraction.  
+  - `TfidfVectorizer`: For text feature extraction and transformation.  
   - `joblib`: For saving and loading serialized machine learning models.  
-  - `nltk`: For text preprocessing and stopword removal.  
+  - `nltk`: For text preprocessing, tokenization, and stopword removal.  
   - `spaCy`: For advanced natural language processing and tokenization.  
   - `re`: For text cleaning and processing via regular expressions.  
   - `cosine_similarity`: To compute textual similarity between segments using vectorized data.  
   - `difflib`: For identifying and visually highlighting textual differences.  
+- **ML Models & Tools**:  
+  - `LabelEncoder`: Used for encoding target variables in the clause dataset.  
+  - `MLPClassifier`: For training multilayer perceptron neural networks on clause data.  
+  - `SVC (Support Vector Classifier)`: Applied for classification tasks in model training.  
+  - `LogisticRegression`: Used for modeling relationships and classification.  
+  - `VotingClassifier`: Combined predictions from multiple models for improved accuracy.  
+- **Visualization**:  
+  - `matplotlib`: Used for plotting and visualizing data insights during model evaluation.  
 
 ### 🖥️ **Backend**  
 - **Flask**: Lightweight web framework for API endpoints.  
