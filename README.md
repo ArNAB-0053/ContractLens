@@ -90,9 +90,10 @@ Watch our project demonstration:
 
 ## ⚠️ Troubleshooting
 
-- If package installation fails, check individual package documentation
-- Ensure all prerequisites are properly installed
-- Keep dependencies updated to latest stable versions
+- The included `requirements.txt` file is intended to install all necessary dependencies.  
+- If installation via `requirements.txt` fails, check the respective package's official documentation for updates or compatibility issues.  
+- Ensure all prerequisites (like Python, Node.js) are properly installed on your system.  
+- Regularly update dependencies to their latest stable versions.
 
 ## 📝 Notes
 
@@ -100,7 +101,13 @@ Watch our project demonstration:
    - The application is not hosted and relies on **local storage** (your PC/Laptop, not browser-based) for certain tasks.  
    - Please **carefully read and understand the code** before using or modifying it to ensure compatibility with your environment.  
 
-2. **Planned Enhancements**  
+2. **Models**  
+   - The application uses trained models saved as `.pkl` files:  
+     - `ensemble_model_tfidf_vectorizer.pkl`: For text vectorization during similarity calculation and clause detection.  
+     - `ensemble_model.pkl`: A trained ensemble model for clause prediction and classification tasks.  
+   - Ensure these files are available in the correct directory before running the application to avoid errors.
+
+3. **Planned Enhancements**  
    Some functionalities are not fully implemented yet, but they **may be added in the future** as the project evolves. Stay tuned! 🚀 
 
 ## 👥 Team
