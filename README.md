@@ -43,7 +43,8 @@ Watch our project demonstration:
    - Extract paragraphs for detailed comparison.  
 4. **Paragraph Matching**: Map corresponding paragraphs for side-by-side evaluation.  
 5. **Similarity Calculation**: Compare mapped paragraphs for textual similarity.  
-6. **Difference Highlighting**: Visually indicate differences in structure, content, or language.  (https://github.com/user-attachments/assets/05bfaf7d-f294-412a-bbdf-ac0aef5073da)
+6. **Difference Highlighting**: Visually indicate differences in structure, content, or language.![workfllow](https://github.com/user-attachments/assets/5e8ee7b4-d6ea-4ebc-bc42-679bf1d3e2d8)
+
 7. **Clause Prediction**: Identify and predict **specific clauses** in contracts using a trained model. 
 
 ---  
