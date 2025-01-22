@@ -2,4 +2,6 @@
 test.py
 temp.py
 *.md
+__pycache__
 # *.pkl
+no-need
