@@ -7,7 +7,7 @@
 ## 📹 Demo
 
 Watch our project demonstration:
-[Contract Analysis Demo Video]([https://your-video-link-here](https://drive.google.com/file/d/1uWV79eEbc8ND_0T1_mRKzVaqGtEqEWKZ/view?usp=sharing))
+[Contract Analysis Demo Video](https://drive.google.com/file/d/1uWV79eEbc8ND_0T1_mRKzVaqGtEqEWKZ/view?usp=sharing)
 
 ---
 
